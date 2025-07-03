@@ -13,7 +13,7 @@
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/<your-username>/stream-filter.git
+   git clone https://github.com/barmenteros/stream-filter.git
    cd stream-filter
    ```
 

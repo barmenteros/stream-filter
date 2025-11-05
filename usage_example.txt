@@ -1,13 +1,9 @@
-================================================================================
 STREAM FILTER TOOLS - USAGE EXAMPLES
-================================================================================
 
 This document provides practical examples for using both stream_filter.py and
 stream_delete.py to process large text files efficiently.
 
-================================================================================
 1. STREAM_FILTER.PY - Extract lines containing a substring
-================================================================================
 
 Purpose: Keep only lines that contain the specified substring.
 
@@ -44,9 +40,7 @@ Input:  access.log
 Output: access_filtered.log (contains only activity for user 12345)
 
 
-================================================================================
 2. STREAM_DELETE.PY - Remove lines containing a substring
-================================================================================
 
 Purpose: Remove all lines that contain the specified substring.
 
@@ -90,9 +84,7 @@ Input:  server.log
 Output: server_cleaned.log (all heartbeat messages removed)
 
 
-================================================================================
 3. COMBINING BOTH TOOLS
-================================================================================
 
 You can chain both tools to perform complex filtering operations:
 
@@ -107,9 +99,7 @@ python stream_delete.py application_filtered.log "SocketTimeoutException"
 Result: application_filtered_cleaned.log contains only relevant errors
 
 
-================================================================================
 4. WORKING WITH LARGE FILES
-================================================================================
 
 Both tools are designed to handle very large files efficiently:
 
@@ -123,9 +113,7 @@ python stream_filter.py huge_log_10GB.txt "CRITICAL"
 # Processes entire 10GB file with minimal memory footprint
 
 
-================================================================================
 5. ENCODING SUPPORT
-================================================================================
 
 Both tools automatically handle different text encodings:
 
@@ -135,9 +123,7 @@ Both tools automatically handle different text encodings:
 This means you typically don't need to worry about file encoding.
 
 
-================================================================================
 6. NOTES AND TIPS
-================================================================================
 
 - Matching is case-sensitive: "ERROR" != "error"
 - Partial matches work: "USD" will match "AUDUSD", "USDJPY", etc.
@@ -146,4 +132,4 @@ This means you typically don't need to worry about file encoding.
 - If no matches found, stream_filter.py reports an error
 - If no matches found, stream_delete.py copies all lines (nothing to delete)
 
-================================================================================
+python stream_filter.py 20250701_.txt "AUDUSD,M15"

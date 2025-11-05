@@ -52,8 +52,9 @@ def delete_filter_file(input_path: str, output_path: str, substring: str):
         return kept, deleted
 
     # Nothing to delete (substring not found)
-    sys.exit(f"❗ No lines containing '{substring}' were found. "
-             "The output file contains all lines from the input.")
+    print(f"❗ No lines containing '{substring}' were found. "
+          "The output file contains all lines from the input.")
+    sys.exit(0)
 
 def parse_args():
     p = argparse.ArgumentParser(

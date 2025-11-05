@@ -1,0 +1,1 @@
+python stream_filter.py 20250701_.txt "AUDUSD,M15"

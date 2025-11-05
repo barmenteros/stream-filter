@@ -1,6 +1,14 @@
 # Stream Filter
 
-> **stream-filter**: A lightweight Python tool to extract lines containing a given substring from very large text files without high memory overhead.
+> **stream-filter**: Lightweight Python tools to filter very large text files without high memory overhead.
+
+## Tools
+
+### 1. stream_filter.py
+Extracts lines **containing** a given substring from large text files.
+
+### 2. stream_delete.py
+Removes lines **containing** a given substring from large text files.
 
 ## Features
 
@@ -27,13 +35,25 @@
 
 ## Usage
 
+### stream_filter.py - Extract matching lines
+
 ```bash
 python stream_filter.py <path/to/log.txt> "AUDUSD,M15"
 ```
 
 * **Input**: Path to a `.txt` file (ANSI/UTF-8/UTF-16 LE).
-* **Filter**: Case-sensitive substring.
-* **Output**: `input_filtered.txt` in the same directory, containing matching lines.
+* **Filter**: Case-sensitive substring to find.
+* **Output**: `input_filtered.txt` in the same directory, containing only matching lines.
+
+### stream_delete.py - Remove matching lines
+
+```bash
+python stream_delete.py <path/to/log.txt> "ERROR"
+```
+
+* **Input**: Path to a `.txt` file (ANSI/UTF-8/UTF-16 LE).
+* **Filter**: Case-sensitive substring to delete.
+* **Output**: `input_cleaned.txt` in the same directory, with matching lines removed.
 
 ## Contributing
 

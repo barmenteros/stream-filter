@@ -1,0 +1,149 @@
+================================================================================
+STREAM FILTER TOOLS - USAGE EXAMPLES
+================================================================================
+
+This document provides practical examples for using both stream_filter.py and
+stream_delete.py to process large text files efficiently.
+
+================================================================================
+1. STREAM_FILTER.PY - Extract lines containing a substring
+================================================================================
+
+Purpose: Keep only lines that contain the specified substring.
+
+Basic Usage:
+------------
+python stream_filter.py input.txt "search_string"
+
+Example 1: Extract trading data for a specific symbol
+------------------------------------------------------
+python stream_filter.py trading_log.txt "AUDUSD,M15"
+
+Input:  trading_log.txt
+Output: trading_log_filtered.txt (contains only AUDUSD,M15 lines)
+
+Example 2: Extract error messages from application logs
+--------------------------------------------------------
+python stream_filter.py application.log "ERROR"
+
+Input:  application.log
+Output: application_filtered.log (contains only ERROR lines)
+
+Example 3: Filter by timestamp or date
+---------------------------------------
+python stream_filter.py server.log "2025-11-05"
+
+Input:  server.log
+Output: server_filtered.log (contains only lines from Nov 5, 2025)
+
+Example 4: Extract specific user activity
+------------------------------------------
+python stream_filter.py access.log "user_id=12345"
+
+Input:  access.log
+Output: access_filtered.log (contains only activity for user 12345)
+
+
+================================================================================
+2. STREAM_DELETE.PY - Remove lines containing a substring
+================================================================================
+
+Purpose: Remove all lines that contain the specified substring.
+
+Basic Usage:
+------------
+python stream_delete.py input.txt "substring_to_remove"
+
+Example 1: Clean debug messages from logs
+------------------------------------------
+python stream_delete.py application.log "DEBUG"
+
+Input:  application.log
+Output: application_cleaned.log (all DEBUG lines removed)
+
+Example 2: Remove test data from production exports
+----------------------------------------------------
+python stream_delete.py data_export.csv "TEST_USER"
+
+Input:  data_export.csv
+Output: data_export_cleaned.csv (all test user entries removed)
+
+Example 3: Filter out specific symbols from trading data
+---------------------------------------------------------
+python stream_delete.py trading_data.txt "GBPUSD"
+
+Input:  trading_data.txt
+Output: trading_data_cleaned.txt (all GBPUSD entries removed)
+
+Example 4: Remove sensitive information
+----------------------------------------
+python stream_delete.py report.txt "CONFIDENTIAL"
+
+Input:  report.txt
+Output: report_cleaned.txt (all lines marked CONFIDENTIAL removed)
+
+Example 5: Clean log file of spam/noise
+----------------------------------------
+python stream_delete.py server.log "heartbeat"
+
+Input:  server.log
+Output: server_cleaned.log (all heartbeat messages removed)
+
+
+================================================================================
+3. COMBINING BOTH TOOLS
+================================================================================
+
+You can chain both tools to perform complex filtering operations:
+
+Example: Extract error logs, but exclude certain types
+-------------------------------------------------------
+Step 1: Extract all errors
+python stream_filter.py application.log "ERROR"
+
+Step 2: Remove known/ignorable errors
+python stream_delete.py application_filtered.log "SocketTimeoutException"
+
+Result: application_filtered_cleaned.log contains only relevant errors
+
+
+================================================================================
+4. WORKING WITH LARGE FILES
+================================================================================
+
+Both tools are designed to handle very large files efficiently:
+
+- Memory usage remains constant regardless of file size
+- No need to split large files before processing
+- Can process multi-GB log files on systems with limited RAM
+
+Example with large file:
+------------------------
+python stream_filter.py huge_log_10GB.txt "CRITICAL"
+# Processes entire 10GB file with minimal memory footprint
+
+
+================================================================================
+5. ENCODING SUPPORT
+================================================================================
+
+Both tools automatically handle different text encodings:
+
+1. First attempt: System default encoding (usually UTF-8)
+2. Fallback: UTF-16 LE (with BOM detection)
+
+This means you typically don't need to worry about file encoding.
+
+
+================================================================================
+6. NOTES AND TIPS
+================================================================================
+
+- Matching is case-sensitive: "ERROR" != "error"
+- Partial matches work: "USD" will match "AUDUSD", "USDJPY", etc.
+- For exact matches, include delimiters: ",USD," instead of "USD"
+- Output files are created in the same directory as input files
+- If no matches found, stream_filter.py reports an error
+- If no matches found, stream_delete.py copies all lines (nothing to delete)
+
+================================================================================
